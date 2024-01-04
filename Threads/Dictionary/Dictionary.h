@@ -54,7 +54,7 @@ public:
 
     void sumFounds(int KeysNumber){
         // std:: unique_lock lock ( mutex_ ) ; 
-        // std::shared_lock lock ( mutex_ ) ; 
+        std::shared_lock lock ( mutex_ ) ; 
         std::random_device rd;  
         std::mt19937 gen(rd()); 
         std::uniform_int_distribution<int> distribution(0, 1000000);
