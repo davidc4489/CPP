@@ -1,6 +1,4 @@
 #include <SFML/Graphics.hpp>
-#include <SFML/System/Time.hpp>
-#include <SFML/System/Clock.hpp>
 #include <iostream>
 #include "Tuto.hpp"
 #include "EventHandler.hpp"
