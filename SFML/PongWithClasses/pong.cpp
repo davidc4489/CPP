@@ -18,7 +18,7 @@ CheckCollision checker;
 
 Paddle leftRacket(50, WIN_HEIGHT / 2, 20, 150, 1);
 Paddle rightRacket(WIN_WIDTH - 70, WIN_HEIGHT / 2, 20, 150, 1);
-Ball ball(BALL_INIT_POS_X, BALL_INIT_POS_Y, 15, 0.2);
+Ball ball(BALL_INIT_POS_X, BALL_INIT_POS_Y, 15, 0.5);
 
 int main(){
     window.create(VideoMode(WIN_WIDTH, WIN_HEIGHT), "Pong", Style::Default);
