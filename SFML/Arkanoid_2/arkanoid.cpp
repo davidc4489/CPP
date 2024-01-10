@@ -62,6 +62,8 @@ int main(){
         collisionsChecker.checkCollision(window, ball, paddle, blocks, lifesBoard, scoreBoard, eventChecker, restarter);
 
         drawer.draw();
+        // window.draw(topTen.topTen[0]);
+        // window.display();
     }
     return 0;
 }

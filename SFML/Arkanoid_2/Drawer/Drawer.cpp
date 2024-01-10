@@ -57,9 +57,9 @@ void Drawer::draw(){
         m_window.draw(m_buttons[1].getShape());
         m_window.draw(m_buttons[0].getLabel());
         m_window.draw(m_buttons[1].getLabel());
-            for(int i = 0; i <10; i++){
-        // m_window.draw(m_topTen.topTen[0]);
-    }
+    //         for(auto top : m_topTen.topTen){
+    //     m_window.draw(top);
+    // }
     }
 
     m_window.display();
