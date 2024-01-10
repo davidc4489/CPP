@@ -11,6 +11,8 @@
 #include "LifesBoard/LifesBoard.hpp"
 #include "TextFactory/TextFactory.hpp"
 #include "Restart/Restart.hpp"
+#include "Button/Button.hpp"
+#include "TopTen/TopTen.hpp"
 #include <iostream>
 
 using namespace sf;
@@ -23,6 +25,7 @@ Text txt;
 Font font;
 TextFactory textFactory;
 
+
 void loadFont();
 
 LifesBoard lifesBoard(3, 64.1, 16.1, sf::Color::Green, WIN_WIDTH - 10, 10); // Number of lifes, boardWidth, boardHeight, boardColor, posX, posY
@@ -32,11 +35,15 @@ Blocks blocks(3, 5, 100, 40, std::vector<Color> {Color::Red, Color::Green, Color
 
 int main(){
     loadFont();
+    TopTen topTen(font);
+    ButtonFactory playButton(200, 275, 100, 50, "Play", font);
+    ButtonFactory quitButton(500, 275, 100, 50, "Quit", font);
+    std::vector<ButtonFactory> buttons = {playButton, quitButton};
     Text startText = textFactory.createText("Press Space to Start", font, Color::White, 20, Vector2f{10,40});
     Text gameOverText = textFactory.createText("Game Over", font, Color::Red, 20, Vector2f{WIN_HEIGHT / 2, (WIN_WIDTH / 2) - 30});
     Text winner = textFactory.createText("You Win", font, Color::Blue, 20, Vector2f{WIN_HEIGHT / 2, (WIN_WIDTH / 2) - 30});
     ScoreBoard scoreBoard(sf::Color::White, 20, 10, 10, font);  // Color, fontSize, posX, posY, font
-    Drawer drawer(window, blocks, paddle, ball, lifesBoard, scoreBoard, eventChecker, startText, gameOverText, winner);
+    Drawer drawer(window, blocks, paddle, ball, lifesBoard, scoreBoard, eventChecker, startText, gameOverText, winner, buttons, topTen);
     Restarter restarter(paddle, ball, lifesBoard, scoreBoard, eventChecker, drawer);
     GameOver gameOver;
 
@@ -48,7 +55,7 @@ int main(){
         Event event;
 
         while(window.pollEvent(event)){
-            eventChecker.eventChecker(event, window);
+            eventChecker.eventChecker(event, window, buttons);
         }
 
         eventHandler.eventHandler(eventChecker, ball, paddle, blocks, window, restarter, gameOver);

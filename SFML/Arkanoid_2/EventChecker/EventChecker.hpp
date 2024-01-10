@@ -1,6 +1,8 @@
 #pragma once
 
 #include <SFML/Graphics.hpp>
+#include "../Button/Button.hpp"
+#include <vector>
 
 using namespace sf;
 
@@ -14,11 +16,12 @@ public:
         bool spacer;
         bool gameOver;
         bool win;
+        bool play;
     };
     Button button;
 
 public:
     EventChecker();
     EventChecker::Button getButton() const;
-    void eventChecker(Event event, RenderWindow& window);
+    void eventChecker(Event event, RenderWindow& window, std::vector<ButtonFactory>& buttons);
 };

@@ -1,24 +1,46 @@
 #include "Drawer.hpp"
 
-void Drawer::draw(sf::RenderWindow& window, Blocks& blocks, Paddle& paddle, Ball& ball, 
-                LifesBoard& lifesBoard, ScoreBoard& scoreBoard, EventChecker& eventChecker, TextFactory& text){
-    window.clear();
+Drawer::Drawer(sf::RenderWindow& window, Blocks& blocks, Paddle& paddle, Ball& ball, LifesBoard& lifesBoard, ScoreBoard& scoreBoard, 
+                EventChecker& eventChecker, Text& startText, Text& endText, Text& win)
+: m_window(window),
+m_blocks(blocks),
+m_paddle(paddle),
+m_ball(ball),
+m_lifesBoard(lifesBoard),
+m_scoreBoard(scoreBoard),
+m_eventChecker(eventChecker),
+m_startText(startText),
+m_endText(endText),
+m_win(win)
+{}
 
-    for (auto block : blocks.getBlocks())
+
+void Drawer::draw(){
+    m_window.clear(Color::Black);
+
+    for (auto block : m_blocks.getBlocks())
     {
-        window.draw(block);
+        m_window.draw(block);
     };
 
-    window.draw(paddle.getShape());
-    window.draw(ball.getShape());
+    m_window.draw(m_paddle.getShape());
+    m_window.draw(m_ball.getShape());
     
-    for (auto life : lifesBoard.lifes)
+    for (auto life : m_lifesBoard.lifes)
     {
-        window.draw(life);
+        m_window.draw(life);
     };
 
-    if(eventChecker.button.space == false){
-        window.draw(text.text);
+    if(m_eventChecker.button.space == false){
+        m_window.draw(m_startText);
+    }
+
+    if(m_eventChecker.button.gameOver == true){
+        m_window.draw(m_endText);
+    }
+
+    if(m_eventChecker.button.win == true){
+        m_window.draw(m_win);
     }
 
     // if (event.pressed.space == false)
@@ -31,7 +53,7 @@ void Drawer::draw(sf::RenderWindow& window, Blocks& blocks, Paddle& paddle, Ball
     //     window.draw(gameOver);
     // }
 
-    window.draw(scoreBoard.getStrScore());
+    m_window.draw(m_scoreBoard.getStrScore());
 
-    window.display();
+    m_window.display();
 };

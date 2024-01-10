@@ -7,11 +7,15 @@
 #include "../LifesBoard/LifesBoard.hpp"
 #include "../EventChecker/EventChecker.hpp"
 #include "../TextFactory/TextFactory.hpp"
+#include "../Button/Button.hpp"
+#include "../TopTen/TopTen.hpp"
 
 class Drawer
 {
 public:
-    Drawer(sf::RenderWindow& window, Blocks& blocks, Paddle& paddle, Ball& ball, LifesBoard& lifesBoard, ScoreBoard& scoreBoard, EventChecker& eventChecker, Text& startText, Text& endText, Text& win);
+    Drawer(sf::RenderWindow& window, Blocks& blocks, Paddle& paddle, Ball& ball, LifesBoard& lifesBoard, 
+        ScoreBoard& scoreBoard, EventChecker& eventChecker, Text& startText, Text& endText, Text& win,
+        std::vector<ButtonFactory>& buttons, TopTen& topTen);
     sf::RenderWindow& m_window;
     Blocks& m_blocks; 
     Paddle& m_paddle; 
@@ -22,6 +26,8 @@ public:
     Text& m_startText; 
     Text& m_endText; 
     Text& m_win;
+    std::vector<ButtonFactory>& m_buttons;
+    TopTen& m_topTen;
 
     void draw();
 };
